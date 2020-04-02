@@ -1,0 +1,71 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'md_css/monokai.css' %}">
+  <link rel="stylesheet" href="{% static 'prism/prism.css' %}">
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+        crossorigin="anonymous"
+  >
+  <link href="https://fonts.googleapis.com/css2?family=Exo&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Exo', sans-serif;
+    }
+
+    #wrapper {
+      min-height: 100%;
+      margin-bottom: -60px;
+    }
+
+    #footer,
+    #push {
+      height: 60px;
+    }
+
+    input {
+      margin-right: 5px;
+    }
+
+    .navbar-custom {
+      background-color: #39ff14;
+      color: #1d2124;
+    }
+
+    .navbar-custom a:link {
+      color: #1d2124;
+    }
+
+    .navbar-custom a:visited {
+      color: #1d2124;
+    }
+
+
+  </style>
+</head>
+
+<body>
+{% include 'header.html' %}
+<div id="wrapper">
+  {% block content %}{% endblock content %}
+  <div id="push"></div>
+</div>
+{% include 'footer.html' %}
+<script src="{% static 'jquery/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'popper/popper.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'layer/layer.js' %}"></script>
+<script src="{% static 'ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js' %}"></script>
+{% block script %}{% endblock script %}
+</body>
+
+</html>

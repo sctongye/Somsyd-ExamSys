@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load static %}
+{% load calc_tags %}
+
+{% block title %}
+  Welcome
+{% endblock title %}
+
+{% block content %}
+
+  <style>
+    table {
+      font-size: 14px;
+    }
+  </style>
+
+  <div class="container">
+
+
+    <div class="row mt-5">
+
+
+      <div class="col-5">
+
+        <div class="mt-5 text-center">
+          <img src="{% static 'img/giphy.webp' %}" alt="Study Hard!" style="width:100px;">
+        </div>
+
+        <br>
+
+        <div class="jumbotron text-center shadow-lg p-3 mb-5 bg-white rounded">
+          <h1 class="display-9">Hello{% if user.is_authenticated %}, {{ request.user }}
+            <i class="fas fa-address-card" style="color:#65B042"></i> {% else %}, please
+            <a href="{% url "userprofile:login" %}">login</a>{% endif %}</h1>
+          <p class="lead">This is an online test, do your best to cheer Sarsie up!</p>
+          <hr class="my-4">
+          <img src="{% static 'img/sar.JPG' %}" alt="Sarsie" class="img-thumbnail rounded-circle border border-info"
+               style="width: 300px"><br>
+
+          {% if user.is_authenticated %}
+            <br>
+            <a class="btn btn-primary btn-lg" href="{% url 'exam_page' %}" role="button">Enter</a>
+          {% endif %}
+
+        </div> <!-- end of jumbotron -->
+
+      </div>
+
+
+      <div class="col-7">
+
+
+        <div class="row col-12 justify-content-center col-auto">
+
+          <div class="mt-5">
+            <b>Previous Test Result</b>
+          </div>
+
+          <table class="mt-5 table table-hover shadow-lg p-3 mb-5 bg-white rounded">
+            <thead>
+            <tr>
+              <th scope="col">Participant</th>
+              <th scope="col">Date/Time</th>
+              <th scope="col">Score</th>
+              <th scope="col" class="text-center">Review Questions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for record in test_record %}
+              <tr>
+                <td><i class="fas fa-user-circle" style="color:#5897fb"></i> {{ record.user }}</td>
+                <td><i class="far fa-calendar-alt" style="color:rebeccapurple"></i> {{ record.created }}</td>
+                <td><i class="fas fa-star" style="color:gold"></i> {{ record.score|score_format:record.total_score }}
+                </td>
+                <td class="text-center">
+
+                  {#                {% if record.incorrect_question != '[]' %}#}
+                  {% if record.user == user or user.is_superuser == 1 %}
+                    <form action="" method="POST">
+                      <input type="hidden" name="tested_questions" value="{{ record.tested_questions }}">
+                      <input type="hidden" name="user_answer" value="{{ record.user_answer }}">
+                      <input type="submit" value="Open" class="btn btn-outline-danger btn-sm">
+                      {% csrf_token %}
+                    </form>
+                  {% endif %}
+                  {#                {% endif %}#}
+
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+
+
+          <div class="pagination row">
+            <div class="m-auto">
+              <span class="step-links">
+                  <!-- 如果不是第一页，则显示上翻按钮 -->
+                {% if test_record.has_previous %}
+                  <a href="?page=1" class="btn btn-success">
+                          &laquo; 1
+                      </a>
+                  <span>...</span>
+                  <a href="?page={{ test_record.previous_page_number }}"
+                     class="btn btn-secondary"
+                  >
+                          {{ test_record.previous_page_number }}
+                      </a>
+                {% endif %}
+
+                <!-- 当前页面 -->
+                  <span class="current btn btn-danger btn-lg">
+                      {{ test_record.number }}
+                  </span>
+
+                <!-- 如果不是最末页，则显示下翻按钮 -->
+                {% if test_record.has_next %}
+                  <a href="?page={{ test_record.next_page_number }}"
+                     class="btn btn-secondary"
+                  >
+                          {{ test_record.next_page_number }}
+                      </a>
+                  <span>...</span>
+                  <a href="?page={{ test_record.paginator.num_pages }}"
+                     class="btn btn-success"
+                  >
+                          {{ test_record.paginator.num_pages }} &raquo;
+                      </a>
+                {% endif %}
+              </span>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+{% endblock content %}

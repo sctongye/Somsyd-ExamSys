@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+  Welcome
+{% endblock title %}
+
+{% block content %}
+
+  <style>
+
+
+    .sidebar{
+        will-change: min-height;
+    }
+
+    #timer {
+      width: 100%;
+      padding: 10px;
+      margin: 10px auto;
+      float: right;
+    }
+
+    .timer strong {
+      background: #C71C60;
+      color: #fff;
+      line-height: 39px;
+      font-size: 26px;
+      font-family: Arial;
+      padding: 0 10px;
+      margin-right: 2px;
+      border-radius: 5px;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+  </style>
+
+  <div class="container">
+    <div class="row mt-5 justify-content-center">
+
+      <div class="col-8">
+
+
+        {% if request.user.is_authenticated %}
+          <session>
+            <form action="" method="POST" id="form1" name="hhhhh" autocomplete=off>
+              {% csrf_token %}
+              {#              <p>{{ question_pk_list }}</p>#}
+              {% for question in selected_questions %}
+
+                <div id="box1">
+                  {% if question.question_type == 'ss' %}
+                    <div id="{{ question.pk }}">
+                      <br>
+                      <div>
+                        <p><b>{{ forloop.counter }}.(single selection)</b></p>
+                        {{ question.content|safe }}
+                      </div>
+
+
+                      <input type="hidden" value="{{ question.pk }}">
+
+                      <label><input name="{{ question.pk }}" type="radio"
+                                    value="A"/>{{ question.opt_a }}
+                      </label><br/>
+
+                      <label><input name="{{ question.pk }}" type="radio"
+                                    value="B"/>{{ question.opt_b }}
+                      </label><br/>
+
+                      <label><input name="{{ question.pk }}" type="radio"
+                                    value="C"/>{{ question.opt_c }}
+                      </label><br/>
+
+                      <label><input name="{{ question.pk }}" type="radio"
+                                    value="D"/>{{ question.opt_d }}
+                      </label><br/>
+                      <br>
+                    </div>
+
+                  {% elif question.question_type == 'ms' %}
+
+                    <div id="{{ question.pk }}">
+                      <br>
+
+                      <div>
+                        <p><b>{{ forloop.counter }}.(multi selections)</b></p>
+                        {{ question.content|safe }}
+                      </div>
+
+
+                      <input type="hidden" value="{{ question.pk }}">
+
+                      <label><input name="{{ question.pk }}_1" type="checkbox" value="A"/>{{ question.opt_a }}
+                      </label><br/>
+
+                      <label><input name="{{ question.pk }}_2" type="checkbox" value="B"/>{{ question.opt_b }}
+                      </label><br/>
+
+                      <label><input name="{{ question.pk }}_3" type="checkbox" value="C"/>{{ question.opt_c }}
+                      </label><br/>
+
+                      <label><input name="{{ question.pk }}_4" type="checkbox" value="D"/>{{ question.opt_d }}
+                      </label><br/>
+                      <br>
+
+                    </div>
+
+                  {% elif question.question_type == 'tf' %}
+
+                    <div id="{{ question.pk }}">
+                      <br>
+
+                      <div>
+                        <p><b>{{ forloop.counter }}.(True or False)</b></p>
+                        {{ question.content|safe }}
+                      </div>
+
+                      <input type="hidden" value="{{ question.pk }}">
+
+                      <label><input name="{{ question.pk }}" type="radio"
+                                    value="True"/>{{ question.boolt }}</label><br/>
+
+                      <label><input name="{{ question.pk }}" type="radio"
+                                    value="False"/>{{ question.boolf }}</label><br/>
+                      <br>
+
+                    </div>
+
+                  {% elif question.question_type == 'hand_fill_num' %}
+
+                    <div id="{{ question.pk }}">
+                      <br>
+
+                      <div>
+                        <p><b>{{ forloop.counter }}.(Fill your answer in blank)</b></p>
+                        {{ question.content|safe }}
+                      </div>
+
+                      <input type="hidden" value="{{ question.pk }}">
+
+                      <label><input name="{{ question.pk }}" type="text"/>{{ question.blank_field }}</label><br/>
+                      <br>
+
+                    </div>
+
+                  {% elif question.question_type == 'hand_fill_answer' %}
+
+                    <div id="{{ question.pk }}">
+                      <br>
+
+                      <div>
+                        <p><b>{{ forloop.counter }}.(Fill your answer in blank)</b></p>
+                        {{ question.content|safe }}
+                      </div>
+
+                      <input type="hidden" value="{{ question.pk }}">
+
+                      <label>
+                        <textarea name="{{ question.pk }}">
+                          {{ question.blank_field }}
+                        </textarea>
+                      </label>
+                      <br/>
+                      <br>
+
+                    </div>
+
+                  {% endif %}
+
+                </div>
+
+                <hr/>
+              {% endfor %}
+
+              <input type="submit" value="Finish" class="btn btn-primary">
+
+            </form>
+
+
+          </session>
+
+
+        {% else %}
+          <div>
+            <script type="text/javascript">
+              alert("Please Login");
+            </script>
+            <h1> Please Login</h1>
+
+          </div>
+
+        {% endif %}
+
+
+      </div>
+
+      <div class="sidebar col-3" id="sidebar">
+
+
+        <div id="timer" class="border border-success">
+
+          <h1>Time Remaining</h1>
+          <div class="timer ">
+            <strong id="hour_show"></strong>
+            <b style="font-size: 30px; color: rebeccapurple">: </b>
+            <strong id="minute_show"></strong>
+            <b style="font-size: 30px; color: rebeccapurple">: </b>
+            <strong id="second_show"></strong>
+          </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+{% endblock content %}
+{% block script %}
+<script src="{% static 'sticky_sidebar/jquery.sticky-sidebar.min.js' %}"></script>
+  <script type="text/javascript">
+    $('#sidebar').stickySidebar({
+      topSpacing: 20,
+      bottomSpacing: 20,
+    });
+  </script>
+
+  <script type="text/javascript">
+    function submitForm() {
+      document.getElementById("form1").submit();
+    }
+
+    var intDiff = parseInt({{ test_params.test_time }}) * 60; //倒计时总秒数量
+    function timer(intDiff) {
+      window.setInterval(function () {
+        var day = 0,
+          hour = 0,
+          minute = 0,
+          second = 0; //时间默认值
+        if (intDiff > 0) {
+          day = Math.floor(intDiff / (60 * 60 * 24));
+          hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+          minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+          second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+        }
+        if (minute <= 9) minute = '0' + minute;
+        if (second <= 9) second = '0' + second;
+        $('#day_show').html(day + "天");
+        $('#hour_show').html('<s id="h"></s>' + hour);
+        $('#minute_show').html('<s></s>' + minute);
+        $('#second_show').html('<s></s>' + second);
+        intDiff--;
+        if (intDiff == 0) {
+          submitForm()
+        }
+
+      }, 1000);
+    }
+
+    $(function () {
+      timer(intDiff);
+    });
+
+    //屏蔽右键菜单，！验证
+    //屏蔽右键菜单，！验证
+    document.oncontextmenu = function (event) {
+      if (window.event) {
+        event = window.event;
+      }
+      try {
+        var the = event.srcElement;
+        if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")) {
+          return false;
+        }
+        return true;
+      } catch (e) {
+        return false;
+      }
+    };
+
+
+    document.onkeydown = function (e) {
+      e = window.event || e;
+      var k = e.keyCode;
+      //屏蔽ctrl+R，F5键，ctrl+F5键  F3键！验证
+      if ((e.ctrlKey == true && k == 82) || (k == 116)
+        || (e.ctrlKey == true && k == 116) || k == 114) {
+        e.keyCode = 0;
+        {#alert("当前页面不能刷新！");#}
+        e.returnValue = false;
+        e.cancelBubble = true;
+        return false;
+
+      }
+      //if (k == 8) {
+      //  {#alert("不能返回或后退！");#}
+      //  e.keyCode = 0;
+      //  e.returnValue = false;
+      //  return false;
+      //}
+      //屏蔽 Ctrl+n   验证可以实现效果
+      if (e.ctrlKey && k == 78) {
+        e.keyCode = 0;
+        e.returnValue = false;
+        e.cancelBubble = true;
+        return false;
+      }
+      //屏蔽F11   验证可以实现效果
+      if (k == 122) {
+        e.keyCode = 0;
+        e.returnValue = false;
+        e.cancelBubble = true;
+        return false;
+      }
+      //屏蔽 shift+F10  验证可以实现效果
+      if ((e.shiftKey && k == 121) || (e.ctrlKey && k == 121)) {
+        e.keyCode = 0;
+        e.returnValue = false;
+        e.cancelBubble = true;
+        return false;
+      }
+
+      //屏蔽Alt+F4
+      if ((e.altKey) && (k == 115)) {
+        window.showModelessDialog("about:blank", "",
+          "dialogWidth:1px;dialogheight:1px");
+        e.keyCode = 0;
+        e.returnValue = false;
+        e.cancelBubble = true;
+        return false;
+      }
+      //屏蔽 Alt+ 方向键 ← ;屏蔽 Alt+ 方向键 → ！验证
+      if ((e.altKey)
+        && ((k == 37) || (k == 39))) {
+        {#alert("不准你使用ALT+方向键前进或后退网页！");#}
+        e.keyCode = 0;
+        e.returnValue = false;
+        e.cancelBubble = true;
+        return false;
+      }
+
+    };
+
+
+  </script>
+{% endblock script %}

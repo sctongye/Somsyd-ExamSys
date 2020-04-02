@@ -1,0 +1,51 @@
+
+<nav class="navbar navbar-expand-lg navbar-custom">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'index' %}"><i class="fas fa-edit" style="color:#FF6DCE"></i> Online Test System for Sommer & Sydnie</a>
+    <div>
+      <ul class="navbar-nav">
+
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="#">Ready?</a>
+        </li>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+
+          {% if user.profile.avatar.url %}
+          <li class="nav-item">
+          <a class="nav-link" href="#"><img src="{{ user.profile.avatar.url }}" alt="" class="rounded-circle" style="width:30px; height: 30px;"></a>
+          </li>
+          {% endif %}
+          
+          
+          <li class="nav-item dropdown">
+
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+
+              {{ user.username }}
+
+            </a>
+
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+              <a class="dropdown-item" href='{% url "userprofile:edit" user.id %}'>Info</a>
+
+              <a class="dropdown-item" href='{% url "userprofile:logout" %}'>Logout</a>
+
+            </div>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "userprofile:login" %}">Please Login</a>
+          </li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>

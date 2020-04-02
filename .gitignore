@@ -1,0 +1,14 @@
+/media/
+/static/img/
+/static/cleditor/
+/templates/questions/result.html
+/templates/questions/outofuse_wrong_questions.html
+/venv_ubuntu/
+/ExamSys/settings/SensitiveInfo.py
+/NOTE.md
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+

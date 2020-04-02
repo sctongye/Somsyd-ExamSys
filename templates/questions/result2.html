@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+{% load calc_tags%}
+
+{% block title %}
+  Welcome
+{% endblock title %}
+
+{% block content %}
+
+  <style>
+    .resMsg {
+      color: red;
+    }
+  </style>
+
+
+  <div class="container">
+    <div class="row mt-5 justify-content-center">
+
+      <div class="col-8">
+
+        {% if final_score_display %}
+          Your final score is {{ final_score_display }}.
+        {% endif %}
+
+        {% if result_msg != 'good' %}
+          <p class="resMsg">问答题部分分值将在随后加入</p>
+        {% endif %}
+
+
+{#        {% if request.user.is_authenticated %}#}
+          {% for question in tested_questions %}
+            <hr/>
+
+            {% if question.question_type == 'ss' or question.question_type == 'ms' %}
+
+              <div id="box1">
+
+                <br>
+
+                {{ question.content|safe }}
+                <label><input name="{{ question.pk }}" type="radio"
+                              disabled value="A"/>{{ question.opt_a }}
+                </label><br/>
+
+                <label><input name="{{ question.pk }}" type="radio"
+                              disabled value="B"/>{{ question.opt_b }}
+                </label><br/>
+
+                <label><input name="{{ question.pk }}" type="radio"
+                              disabled value="C"/>{{ question.opt_c }}
+                </label><br/>
+
+                <label><input name="{{ question.pk }}" type="radio"
+                              disabled value="D"/>{{ question.opt_d }}
+                </label><br/>
+
+                <p>Answer: {{ question.answer }} {% if user_answer_dict|get_user_answer:question.pk|upper !=  question.answer|upper %}<i class="fas fa-times-circle" style="color: palevioletred;"></i> (your answer: {{ user_answer_dict|get_user_answer:question.pk|upper }}){% else %}<i class="fas fa-check-circle" style="color: #00cc66;"></i>{% endif %}</p>
+
+              </div>
+
+            {% elif question.question_type == 'tf' %}
+
+
+              <div id="box1">
+
+                <br>
+
+                {{ question.content|safe }}
+                <label><input name="{{ question.pk }}" type="radio"
+                              disabled value="True"/>{{ question.boolt }}</label><br/>
+
+                <label><input name="{{ question.pk }}" type="radio"
+                              disabled value="False"/>{{ question.boolf }}</label><br/>
+
+                <p>Answer: {{ question.answer }} {% if user_answer_dict|get_user_answer:question.pk|upper !=  question.answer|upper %}<i class="fas fa-times-circle" style="color: palevioletred;"></i> (your answer: {{ user_answer_dict|get_user_answer:question.pk|capfirst }}){% else %}<i class="fas fa-check-circle" style="color: #00cc66;"></i>{% endif %}</p>
+
+              </div>
+
+
+            {% elif question.question_type == 'hand_fill_num' %}
+
+              <div id="box1">
+
+                <br>
+
+                {{ question.content|safe }}
+
+                <p>Answer: {{ question.answer }} {% if user_answer_dict|get_user_answer:question.pk|upper !=  question.answer|upper %}<i class="fas fa-times-circle" style="color: palevioletred;"></i> (your answer: {{ user_answer_dict|get_user_answer:question.pk|capfirst }}){% else %}<i class="fas fa-check-circle" style="color: #00cc66;"></i>{% endif %}</p>
+
+              </div>
+
+
+            {% elif question.question_type == 'hand_fill_answer' %}
+
+              <div id="box1">
+
+                <br>
+
+                {{ question.content|safe }}
+
+
+                <p>Your answer: {{ user_answer_dict|get_user_answer:question.pk|capfirst }}</p>
+
+              </div>
+
+
+
+
+            {% endif %}
+
+          {% endfor %}
+{#        {% endif %}#}
+
+{#        {% if showAll %}#}
+{#            #}
+{#        {% endif %}#}
+
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+{% endblock content %}
