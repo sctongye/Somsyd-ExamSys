@@ -24,7 +24,7 @@ class IndexView(View):
         # wrong_list = request.POST.get('wrong_list')
         user_answer = request.POST.get('user_answer')
         tested_questions_list = request.POST.get('tested_questions')
-        tested_questions = QuestionPool.objects.filter(pk__in=ast.literal_eval(tested_questions_list)).order_by('weighting')
+        tested_questions = QuestionPool.objects.filter(pk__in=ast.literal_eval(tested_questions_list)).order_by('weighting', 'note')
         user_answer_dict = ast.literal_eval(user_answer)
         # wrong_questions = QuestionPool.objects.filter(pk__in=ast.literal_eval(wrong_list))
         context = {
@@ -45,7 +45,7 @@ class ExamPage(View):
         # 调取设置的考试时长
         test_params = TestParams.objects.all().first()
 
-        selected_questions = QuestionPool.objects.filter(is_active=True).order_by('weighting')
+        selected_questions = QuestionPool.objects.filter(is_active=True).order_by('weighting', 'note') # 若此处排序修改，也要在 IndexView的post的tested_questions 和 ExamPage的post的tested_questions（最下端）同时修改
 
         if selected_questions:
 
@@ -236,7 +236,7 @@ class ExamPage(View):
 
         print(question_pk_list)
         # wrong_questions = QuestionPool.objects.filter(pk__in=wrong_list)
-        tested_questions = QuestionPool.objects.filter(pk__in=question_pk_list).order_by('weighting')
+        tested_questions = QuestionPool.objects.filter(pk__in=question_pk_list).order_by('weighting', 'note')
         print(tested_questions)
         context = {
             # 'wrong_questions': wrong_questions,

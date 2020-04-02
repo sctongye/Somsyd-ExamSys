@@ -45,7 +45,7 @@ class QuestionPool(models.Model):
     opt_d = models.CharField(max_length=200, verbose_name="选项D", default="D. ")
     answer = models.CharField(max_length=20, verbose_name="正确答案")
     score = models.IntegerField(verbose_name="分值", default=10)
-    note = models.TextField(verbose_name="备注信息", default="备注信息")
+    note = models.TextField(verbose_name="备注信息", default="备注信息\n")
     blank_field = models.TextField(verbose_name="问答题答案", null=True, blank=True)
     boolt = models.TextField(verbose_name="判断正误正确选项", default="True")
     boolf = models.TextField(verbose_name="判断正误错误选项", default="False")
