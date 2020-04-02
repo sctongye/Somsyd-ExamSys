@@ -1,4 +1,4 @@
-# Project Description
+# Description
 
 A lightweighted online exam system, users are able to take several types of questions like single selection, multiple selections, true or false, direct input short answer or long sentences.
 
