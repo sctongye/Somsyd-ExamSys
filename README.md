@@ -60,3 +60,10 @@ sqlparse==0.3.1
 ```
 
 
+![Screenshot](https://github.com/sctongye/Somsyd-ExamSys/blob/master/Screenshots/01.png?raw=true "Screenshoot")
+
+![Screenshot](https://github.com/sctongye/Somsyd-ExamSys/blob/master/Screenshots/02.png?raw=true "Screenshoot")
+
+![Screenshot](https://github.com/sctongye/Somsyd-ExamSys/blob/master/Screenshots/03.png?raw=true "Screenshoot")
+
+![Screenshot](https://github.com/sctongye/Somsyd-ExamSys/blob/master/Screenshots/04.png?raw=true "Screenshoot")
