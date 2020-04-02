@@ -1,6 +1,6 @@
-# Project Title
+# Project Description
 
-A lightweighted Online Exam System, test users are able to take several types of questions like single selection, multiple selections, true or false, direct input short answer or long sentences.
+A lightweighted online exam system, users are able to take several types of questions like single selection, multiple selections, true or false, direct input short answer or long sentences.
 
 This project is based on Python 3.6 and Django 3.0.4
 
