@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3449859c-1ef7-428d-9d3d-8805693a0b96" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/exam/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/exam/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/exam/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/exam/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/exam/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/exam/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="3449859c-1ef7-428d-9d3d-8805693a0b96" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,33 +219,6 @@
               <item name="apps" type="462c0819:PsiDirectoryNode" />
               <item name="userprofile" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ExamSys" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ExamSys" type="462c0819:PsiDirectoryNode" />
-              <item name="ExamSys" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExamSys" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ExamSys" type="462c0819:PsiDirectoryNode" />
-              <item name="ExamSys" type="462c0819:PsiDirectoryNode" />
-              <item name="settings" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExamSys" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ExamSys" type="462c0819:PsiDirectoryNode" />
-              <item name="Screenshots" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExamSys" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ExamSys" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExamSys" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ExamSys" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="questions" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -360,7 +328,7 @@
   <component name="ToolWindowManager">
     <frame x="3968" y="-2" width="1080" height="1922" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16473988" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16473988" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -376,7 +344,7 @@
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="manage.py@ExamSys" order="12" weight="0.21611111" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="13" visible="true" weight="0.16333333" />
+      <window_info anchor="bottom" id="Terminal" order="13" visible="true" weight="0.16333333" />
       <window_info anchor="bottom" id="Python Console" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
