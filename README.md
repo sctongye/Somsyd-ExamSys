@@ -48,7 +48,7 @@ PROD_DATABASES = {
 ```
 
 - Clone code to local
-- Setup .venv
+- Setup .venv (optional)
 - pip install packages
 ```
 asgiref==3.2.7
