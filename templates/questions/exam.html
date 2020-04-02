@@ -54,7 +54,7 @@
                     <div id="{{ question.pk }}">
                       <br>
                       <div>
-                        <p><b>{{ forloop.counter }}.(single selection)</b></p>
+                        <p><b>{{ forloop.counter }}</b>. <i class="fas fa-dog" style="color:deepskyblue"></i> <span class="question_type">(single selection)</span></p>
                         {{ question.content|safe }}
                       </div>
 
@@ -85,7 +85,7 @@
                       <br>
 
                       <div>
-                        <p><b>{{ forloop.counter }}.(multi selections)</b></p>
+                        <p><b>{{ forloop.counter }}</b>. <i class="fas fa-cat" style="color:#ffb600"></i> <span class="question_type">(multi selections)</span></p>
                         {{ question.content|safe }}
                       </div>
 
@@ -113,7 +113,7 @@
                       <br>
 
                       <div>
-                        <p><b>{{ forloop.counter }}.(True or False)</b></p>
+                        <p><b>{{ forloop.counter }}</b>. <i class="fas fa-hand-spock" style="color:#7c6cff"></i> <span class="question_type">(True or False)</span></p>
                         {{ question.content|safe }}
                       </div>
 
@@ -134,7 +134,7 @@
                       <br>
 
                       <div>
-                        <p><b>{{ forloop.counter }}.(Fill your answer in blank)</b></p>
+                        <p><b>{{ forloop.counter }}</b>. <i class="fas fa-edit" style="color:deepskyblue"></i> <span class="question_type">(Fill your answer in blank)</span></p>
                         {{ question.content|safe }}
                       </div>
 
@@ -151,7 +151,7 @@
                       <br>
 
                       <div>
-                        <p><b>{{ forloop.counter }}.(Fill your answer in blank)</b></p>
+                        <p><b>{{ forloop.counter }}</b>. <i class="fas fa-pen-square" style="color:deepskyblue"></i> <span class="question_type">(Fill your answer in blank)</span></p>
                         {{ question.content|safe }}
                       </div>
 
